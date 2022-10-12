@@ -1,0 +1,49 @@
+<h2>Add Employee</h2>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date Of Birth</label>
+        <input type="date" class="form-control" formControlName="dateOfBirth">
+    </div>
+    <!-- <div class="form-group">
+        <label for="gender">Gender</label>
+        <div *ngFor="let g of gender | keyvalue">
+
+            <input type="radio" class="form-control" formControlName="gender"  value="{{g.key}}">
+            <label for="{{g.value}}">{{g.value}}</label>
+        </div>
+    </div> -->
+    <div class="form-group">
+        <label for="gender">Gender</label>
+
+        <div *ngFor="let gen of gender | keyvalue">
+            <div *ngIf="isNumber(gen.value)">
+                <input  [value]=gen.value type="radio" name="gender">
+                
+                {{gen.key}}
+                
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+        <label for="mobileNo">Mobile Number</label>
+        <input type="number" class="form-control" formControlName="mobileNo">
+    </div>
+    <div class="form-group">
+        <label for="departmentId">Department</label>
+        <select class="form-control" formControlName="departmentId">
+            <option *ngFor="let d of deptList" value="{{d.id}}">{{d.name}}</option>>
+        </select>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary"  type="submit">Add</button>
+        <button class="btn btn-secondary" [routerLink]="['departments']">Department List</button>
+    </div>
+</form>
